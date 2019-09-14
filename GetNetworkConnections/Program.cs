@@ -23,19 +23,29 @@ namespace UpIpsecVPN
 
         static void Main(string[] args) {
 
-            #region Anable Hidden windows
-            IntPtr hwnd;
-            hwnd = GetConsoleWindow();
-            ShowWindow(hwnd, SW_HIDE);
-            #endregion
+            //#region Anable Hidden windows
+            //IntPtr hwnd;
+            //hwnd = GetConsoleWindow();
+            //ShowWindow(hwnd, SW_HIDE);
+            //#endregion
+
+
+            bool IntIpsecVPNisUP = false;
 
 
             while (true) {
 
 
                 // 1. If connection is good  sleep 20 sec.
-                while (ConnectionISGood("10.127.255.33"))
+                while (ConnectionISGood("10.127.255.33")) {
+                    IntIpsecVPNisUP = true;
                     System.Threading.Thread.Sleep(20000);
+                }
+
+                if (IntIpsecVPNisUP) {
+                    IpsecVPNIntUP(false);
+                    IntIpsecVPNisUP = false;
+                }                
 
                 if (ConnectionISGood("ipsecvpn.omsu.vmr")) {
                     if (IsInterfaceUP("Ipsec VPN"))
