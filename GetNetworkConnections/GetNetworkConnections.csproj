@@ -7,7 +7,7 @@
     <ProjectGuid>{5F04B1AC-0D48-4746-B3A0-8BB5EB1CA408}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>UPIpsecVPN</RootNamespace>
-    <AssemblyName>UPIpsecVPN</AssemblyName>
+    <AssemblyName>net</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

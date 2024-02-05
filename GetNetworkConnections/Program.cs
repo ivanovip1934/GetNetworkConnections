@@ -35,29 +35,31 @@ namespace UpIpsecVPN
 
             NetworkAdapter ipsecvpnadapter = new NetworkAdapter("Ipsec VPN");
 
-            bool IntIpsecVPNisUP = ipsecvpnadapter.IsInterfaceUP();
+            //bool IntIpsecVPNisUP = ipsecvpnadapter.IsInterfaceUP();
 
 
             while (true) {
                 
                 while (ConnectionIpsecVPNIsGood(ipsecvpnadapter, "10.127.255.33")) {
+#if DEBUG
                     Console.WriteLine("Ipsec VPN is good. Sleep 20 sec.");
                     Console.WriteLine($"IP address {ipsecvpnadapter.ShowIPv4Address()[0]}");
-                    IntIpsecVPNisUP = true;
+                    //IntIpsecVPNisUP = true;
+#endif
                     System.Threading.Thread.Sleep(20000);                    
                 }
 
-                if (IntIpsecVPNisUP) {
-                    Console.WriteLine("Ipsec VPN is bad. IpsecVPN interface is UP - shutdown IpsecVPN interface");
-                    IpsecVPNIntUP(false);
-                    IntIpsecVPNisUP = ipsecvpnadapter.IsInterfaceUP();
-                }                
+                //if (IntIpsecVPNisUP) {
+                //    Console.WriteLine("Ipsec VPN is bad. IpsecVPN interface is UP - shutdown IpsecVPN interface");
+                //    IpsecVPNIntUP(false);
+                //    IntIpsecVPNisUP = ipsecvpnadapter.IsInterfaceUP();
+                //}                
 
                 if (ConnectionISGood("ipsecvpn.omsu.vmr")) {
                     if (IsInterfaceUP("Ipsec VPN"))
                         IpsecVPNIntUP(false);
                     IpsecVPNIntUP(true);
-                    IntIpsecVPNisUP = ipsecvpnadapter.IsInterfaceUP();                         
+                    //IntIpsecVPNisUP = ipsecvpnadapter.IsInterfaceUP();                         
                 }
 
                 System.Threading.Thread.Sleep(20000);
